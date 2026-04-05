@@ -4,7 +4,7 @@
       "commandName": "Project",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ConnectionStrings:Postgres": "Host=localhost;Port=5432;Username=postgres;Password=password;Database=orders"
+        "ConnectionStrings:Postgres": "Host=localhost;Port=5432;Username=postgres;Password=YOUR_PASSWORD;Database=orders"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5106"
@@ -13,7 +13,7 @@
       "commandName": "Project",
         "environmentVariables": {
             "ASPNETCORE_ENVIRONMENT": "Development",
-            "ConnectionStrings:Postgres": "Host=localhost;Port=5432;Username=postgres;Password=password;Database=orders"
+            "ConnectionStrings:Postgres": "Host=localhost;Port=5432;Username=postgres;Password=YOUR_PASSWORD;Database=orders"
         },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7039;http://localhost:5106"
@@ -24,7 +24,7 @@
         "environmentVariables": {
             "ASPNETCORE_HTTPS_PORTS": "8081",
             "ASPNETCORE_HTTP_PORTS": "8080",
-            "ConnectionStrings:Postgres": "Host=localhost;Port=5432;Username=postgres;Password=password;Database=orders"
+            "ConnectionStrings:Postgres": "Host=localhost;Port=5432;Username=postgres;Password=YOUR_PASSWORD;Database=orders"
         },
       "publishAllPorts": true,
       "useSSL": true
