@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "OutboxPublisher.Worker": {
+      "commandName": "Project",
+        "environmentVariables": {
+            "DOTNET_ENVIRONMENT": "Development",
+            "ConnectionStrings:Postgres": "Host=localhost;Port=5432;Username=postgres;Password=YOUR_PASSWORD;Database=orders"
+        },
+      "dotnetRunMessages": true
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  },
+  "$schema": "https://json.schemastore.org/launchsettings.json"
+}

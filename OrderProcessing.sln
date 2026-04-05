@@ -18,6 +18,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workers", "Workers", "{0F1741EC-AA5C-472D-B0E7-EB68EF507833}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutboxPublisher.Worker", "src\Workers\OutboxPublisher.Worker\OutboxPublisher.Worker.csproj", "{B4674A4E-E230-48E8-83EE-3EFB8CAAB2D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +44,10 @@ Global
 		{BCE59E9A-CCFA-4C84-973A-E8B38D0C6182}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCE59E9A-CCFA-4C84-973A-E8B38D0C6182}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCE59E9A-CCFA-4C84-973A-E8B38D0C6182}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4674A4E-E230-48E8-83EE-3EFB8CAAB2D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4674A4E-E230-48E8-83EE-3EFB8CAAB2D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4674A4E-E230-48E8-83EE-3EFB8CAAB2D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4674A4E-E230-48E8-83EE-3EFB8CAAB2D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +57,8 @@ Global
 		{71D05DCB-2EF9-4D41-854E-38D51E957979} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{7F773412-056E-4CF8-8362-5B85FAB19F8D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{BCE59E9A-CCFA-4C84-973A-E8B38D0C6182} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{0F1741EC-AA5C-472D-B0E7-EB68EF507833} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{B4674A4E-E230-48E8-83EE-3EFB8CAAB2D8} = {0F1741EC-AA5C-472D-B0E7-EB68EF507833}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B6A271BE-18B2-480A-975F-65E0CCC1F953}
