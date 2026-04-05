@@ -17,4 +17,13 @@ public class OutboxMessageRepository(AppDbContext context) : IOutboxMessageRepos
         return await context.OutboxMessages
              .FirstOrDefaultAsync(o => o.Id.Equals(id), ct);
     }
+
+    public async Task<IEnumerable<OutboxMessage>> GetPendingMessagesAsync(CancellationToken ct = default)
+    {
+        return await context.OutboxMessages
+            .Where(o => o.ProcessedAt == null)
+            .OrderBy(o => o.CreatedAt)
+            .Take(100)
+            .ToListAsync(ct);
+    } 
 }

@@ -17,4 +17,9 @@ public class OutboxMessage
         Payload = payload;
         CreatedAt = DateTime.UtcNow;
     }
+
+    public void MarkAsProcessed()
+    {
+        ProcessedAt = DateTime.UtcNow;
+    }
 }
