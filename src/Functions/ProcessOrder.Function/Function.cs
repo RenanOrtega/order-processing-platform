@@ -16,6 +16,8 @@ namespace ProcessOrder.Function
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly IAmazonSQS _sqs;
+        private readonly string _inventoryQueueUrl;
+        private readonly string _paymentQueueUrl;
         /// <summary>
         /// Default constructor. This constructor is used by Lambda to construct the instance. When invoked in a Lambda environment
         /// the AWS credentials will come from the IAM role associated with the function and the AWS region will be set to the
@@ -27,6 +29,8 @@ namespace ProcessOrder.Function
             ConfigureServices(serviceCollection);
             _serviceProvider = serviceCollection.BuildServiceProvider();
             _sqs = _serviceProvider.GetRequiredService<IAmazonSQS>();
+            _inventoryQueueUrl = Environment.GetEnvironmentVariable("INVENTORY_QUEUE_URL")!;
+            _paymentQueueUrl = Environment.GetEnvironmentVariable("PAYMENT_QUEUE_URL")!;
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -87,13 +91,13 @@ namespace ProcessOrder.Function
         private async Task SendToInventoryAsync(OrderCreatedPayload orderCreatedPayload)
         {
             var inventoryRequestedPayload = new InventoryRequestedPayload(orderCreatedPayload.Id, [.. orderCreatedPayload.Items.Select(i => new InventoryRequestedPayloadItem(i.ProductId, i.Quantity))]);
-            await _sqs.SendMessageAsync("inventory url", JsonSerializer.Serialize(inventoryRequestedPayload));
+            await _sqs.SendMessageAsync(_inventoryQueueUrl, JsonSerializer.Serialize(inventoryRequestedPayload));
         }
 
         private async Task SendToPaymentAsync(OrderCreatedPayload orderCreatedPayload)
         {
             var paymentRequestedPayload = new PaymentRequestedPayload(orderCreatedPayload.Id, orderCreatedPayload.Amount);
-            await _sqs.SendMessageAsync("payment url", JsonSerializer.Serialize(paymentRequestedPayload));
+            await _sqs.SendMessageAsync(_paymentQueueUrl, JsonSerializer.Serialize(paymentRequestedPayload));
         }
     }
 }
