@@ -1,10 +1,10 @@
-﻿using System.Text.Json;
-using MediatR;
-using OrderProcessing.Application.CreateOrder.Commands;
+﻿using MediatR;
+using OrderProcessing.Application.Orders.Commands;
+using OrderProcessing.Contracts;
 using OrderProcessing.Domain.Constants.OutboxMessage;
 using OrderProcessing.Domain.Entities;
-using OrderProcessing.Domain.Models.OutboxMessage;
 using OrderProcessing.Domain.Repositories.Interfaces;
+using System.Text.Json;
 
 namespace OrderProcessing.Application.Orders.Handlers;
 
@@ -22,10 +22,21 @@ public class CreateOrderCommandHandler(
         var order = new Order(request.CustomerId);
         foreach (var item in request.Items)
         {
-            order.AddItem(item.ProductId, item.Quantity);
+            order.AddItem(item.ProductId, item.Quantity, item.UnitPrice);
         }
 
-        var outbox = new OutboxMessage(EventTypes.OrderCreated, JsonSerializer.Serialize(new PayloadJson(order.Id, order.CustomerId, EventTypes.OrderCreated)));
+        var outbox = new OutboxMessage(
+            EventTypes.OrderCreated,
+            JsonSerializer.Serialize(
+                new OrderCreatedPayload(
+                    order.Id,
+                    order.CustomerId,
+                    EventTypes.OrderCreated,
+                    order.TotalAmount,
+                    [.. order.Items.Select(i => new OrderCreatedPayloadItem(i.ProductId, i.Quantity, i.UnitPrice))]
+                )
+            )
+        );
 
         await _orderRepository.AddAsync(order, ct);
         await _outboxMessageRepository.AddAsync(outbox, ct);

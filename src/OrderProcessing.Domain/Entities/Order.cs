@@ -8,6 +8,7 @@ public class Order
     public string CustomerId { get; private set; }
     public OrderStatus Status { get; private set; }
     public DateTime CreatedAt { get; private set; }
+    public decimal TotalAmount => Items.Sum(i => i.Total);
 
     private readonly List<OrderItem> _items = [];
     public IReadOnlyCollection<OrderItem> Items => _items;
@@ -22,8 +23,8 @@ public class Order
         CreatedAt = DateTime.UtcNow;
     }
 
-    public void AddItem(string productId, int quantity)
+    public void AddItem(string productId, int quantity, decimal unitPrice)
     {
-        _items.Add(new OrderItem(Id, productId, quantity));
+        _items.Add(new OrderItem(Id, productId, quantity, unitPrice));
     }
 }

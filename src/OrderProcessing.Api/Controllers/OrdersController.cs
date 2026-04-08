@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using OrderProcessing.Application.CreateOrder.Commands;
+using OrderProcessing.Application.Orders.Commands;
 
 namespace OrderProcessing.Api.Controllers;
 
