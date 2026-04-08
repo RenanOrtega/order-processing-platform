@@ -16,5 +16,8 @@ public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
             .HasMaxLength(50);
 
         builder.Property(i => i.Quantity);
+
+        builder.Property(i => i.UnitPrice)
+            .HasPrecision(18, 2);
     }
 }
